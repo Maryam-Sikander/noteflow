@@ -1,7 +1,7 @@
 import streamlit as st
 from dotenv import load_dotenv
 from generate_content import generate_summary, ReportPDF
-from QA import generate_answer, retrieve_transcript
+from QndA import generate_answer, retrieve_transcript
 from youtube_transcript_api import YouTubeTranscriptApi
 
 # Load environment variables
