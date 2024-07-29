@@ -6,7 +6,8 @@
 
 ## Overview
 NoteWorthy is a cutting-edge web application designed to simplify note-taking for students. It generates detailed notes from lecture and YouTube video URLs, offers content recommendations, and provides options to download notes as PDFs. Experience seamless interaction with video content and explore related materials effortlessly.
-
+## Try noteworthy
+[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://noteworthy.streamlit.app/)
 
 ## Motivation
 In an era where students and professionals alike juggle numerous sources of information, efficiently capturing and organizing knowledge is essential. NoteWorthy was inspired by the need for a comprehensive tool that can not only generate notes from various sources but also enhance the learning experience with personalized content recommendations. By providing a streamlined note-taking process and insightful content suggestions, NoteWorthy aims to make studying and information retrieval more efficient and effective.
