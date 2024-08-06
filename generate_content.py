@@ -8,6 +8,7 @@ from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib.colors import blue, black
+import pdfkit
 from exa_py import Exa
 import google.generativeai as genai
 from dotenv import load_dotenv
@@ -21,8 +22,10 @@ pdfmetrics.registerFont(TTFont('Bold', 'fonts/AnonymousPro-Bold.ttf'))
 pdfmetrics.registerFont(TTFont('Italic', 'fonts/AnonymousPro-Italic.ttf'))
 
 class ReportPDF:
-    def __init__(self, title):
+    def __init__(self, title, font='Regular', font_size=12):
         self.title = title
+        self.font = font
+        self.font_size = font_size
         self.memory_buffer = BytesIO()
         self.pdf_canvas = canvas.Canvas(self.memory_buffer, pagesize=letter)
         self.pdf_canvas.setTitle(title)
@@ -54,7 +57,7 @@ class ReportPDF:
         cursor_y = y_position
         max_line_width = self.page_width - 2 * 72 - indentation
         for chunk, style, color in split_text(content):
-            self.pdf_canvas.setFont(style, font_size)
+            self.pdf_canvas.setFont(style, font_size)  # Apply font and size
             self.pdf_canvas.setFillColor(color)
             
             words = chunk.split()
@@ -103,16 +106,16 @@ class ReportPDF:
                 y_position -= 0.4 * inch
             elif paragraph.startswith("**"):
                 y_position -= 0.3 * inch
-                _, y_position = self.render_text(paragraph, 72, y_position, 14)
+                _, y_position = self.render_text(paragraph, 72, y_position, self.font_size)
             elif paragraph.startswith("* "):
                 paragraph = f"**{list_index}.** {paragraph[2:]}"
                 list_index += 1
-                _, y_position = self.render_text(paragraph, 72, y_position, 12, 14, 10)
+                _, y_position = self.render_text(paragraph, 72, y_position, self.font_size, 14, 10)
             elif paragraph.startswith("  + ") or paragraph.startswith("  - "):
                 paragraph = f"{bullet_point} {paragraph[4:]}"
-                _, y_position = self.render_text(paragraph, 72, y_position, 12, 14, 20)
+                _, y_position = self.render_text(paragraph, 72, y_position, self.font_size, 14, 20)
             else:
-                _, y_position = self.render_text(paragraph, 72, y_position)
+                _, y_position = self.render_text(paragraph, 72, y_position, self.font_size)
 
             y_position -= 0.1 * inch
 
@@ -120,7 +123,9 @@ class ReportPDF:
         self.pdf_canvas.save()
         self.memory_buffer.seek(0)
         return self.memory_buffer.getvalue()
+    
 
+# Gemini for content genrtaion
 def generate_summary(formatted_transcript, system_instruction, url):
     exa_api_key = os.getenv("EXA_API_KEY")
     GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
