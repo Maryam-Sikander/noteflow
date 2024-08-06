@@ -1,11 +1,11 @@
 <img src="img/logo.png" alt="NoteWorthy Logo" width="100" height="100">
 
-# Noteworthy
+# NoteFlow
 
 **Author**: @Maryam-Sikander
 
 ## Overview
-NoteWorthy is a cutting-edge web application designed to simplify note-taking for students. It generates detailed notes from lecture and YouTube video URLs, offers content recommendations, and provides options to download notes as PDFs. Experience seamless interaction with video content and explore related materials effortlessly.
+NoteFlow is a cutting-edge web application designed to simplify note-taking for students. It generates detailed notes from lecture and YouTube video URLs, offers content recommendations, and provides options to download notes as PDFs. Experience seamless interaction with video content and explore related materials effortlessly.
 ## Try noteworthy
 [![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://noteworthy.streamlit.app/)
 
